@@ -1,15 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {CityListService} from "../../services/city-list.service";
+import {City} from "../../models/city";
 
 @Component({
-  selector: 'app-city-list',
+  selector: 'city-list',
   templateUrl: './city-list.component.html',
   styleUrls: ['./city-list.component.css']
 })
 export class CityListComponent implements OnInit {
 
-  constructor() { }
+  cities: City[] = [];
+  constructor(private cityListService: CityListService) { }
 
   ngOnInit(): void {
+    this.cityListService.getCities().subscribe(res => {
+      this.cities = res;
+    })
   }
-
 }
