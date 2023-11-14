@@ -15,6 +15,10 @@ export class CityListComponent implements OnInit {
   ngOnInit(): void {
     this.cityListService.getCities().subscribe(res => {
       this.cities = res;
-    })
+    });
+  }
+
+  isPopulationOverMillion(population: number): boolean {
+    return population > 1_000_000;
   }
 }

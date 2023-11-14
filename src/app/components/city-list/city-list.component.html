@@ -5,7 +5,7 @@
     <th>Population</th>
     <th>Density</th>
   </tr>
-  <tr *ngFor="let city of cities">
+  <tr *ngFor="let city of cities" [ngClass]="{'population-over-million': isPopulationOverMillion(city.population)}">
     <td>{{city.name}}</td>
     <td>{{city.area}}</td>
     <td>{{city.population}}</td>
