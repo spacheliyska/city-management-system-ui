@@ -1,14 +1,28 @@
-<table *ngIf="cities">
-  <tr>
-    <th>Name</th>
-    <th>Area</th>
-    <th>Population</th>
-    <th>Density</th>
-  </tr>
-  <tr *ngFor="let city of cities" [ngClass]="{'population-over-million': isPopulationOverMillion(city.population)}">
-    <td>{{city.name}}</td>
-    <td>{{city.area}}</td>
-    <td>{{city.population}}</td>
-    <td>{{city.density}}</td>
-  </tr>
+<table mat-table [dataSource]="cities" class="mat-elevation-z8">
+  <!-- Name Column -->
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef>Name</th>
+    <td mat-cell *matCellDef="let city"> {{city.name}} </td>
+  </ng-container>
+
+  <!-- Area Column -->
+  <ng-container matColumnDef="area">
+    <th mat-header-cell *matHeaderCellDef>Area</th>
+    <td mat-cell *matCellDef="let city"> {{city.area}} </td>
+  </ng-container>
+
+  <!-- Population Column -->
+  <ng-container matColumnDef="population">
+    <th mat-header-cell *matHeaderCellDef>Population</th>
+    <td mat-cell *matCellDef="let city"> {{city.population}} </td>
+  </ng-container>
+
+  <!-- Density Column -->
+  <ng-container matColumnDef="density">
+    <th mat-header-cell *matHeaderCellDef>Density</th>
+    <td mat-cell *matCellDef="let city"> {{city.density}} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="{'population-over-million': isPopulationOverMillion(row.population)}"></tr>
 </table>

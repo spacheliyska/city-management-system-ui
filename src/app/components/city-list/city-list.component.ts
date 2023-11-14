@@ -10,6 +10,7 @@ import {City} from "../../models/city";
 export class CityListComponent implements OnInit {
 
   cities: City[] = [];
+  displayedColumns: string[] = ['name', 'area', 'population', 'density'];
   constructor(private cityListService: CityListService) { }
 
   ngOnInit(): void {
