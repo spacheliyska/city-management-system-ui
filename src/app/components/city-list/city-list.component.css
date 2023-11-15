@@ -1,7 +1,12 @@
+table {
+  width: 100%;
+}
+
 .population-over-million {
   background: beige;
 }
 
-table {
-  width: 100%;
+.spinner {
+  display: flex;
+  justify-content: center;
 }
