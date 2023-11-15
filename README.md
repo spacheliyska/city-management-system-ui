@@ -10,7 +10,10 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+1. Clone the repository `git clone https://github.com/spacheliyska/city-management-system-ui.git`
+2. Navigate to the project - `cd city-management-system-ui` 
+3. Sync node_modules - `npm install`
+4. Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
 ## Code scaffolding
 
