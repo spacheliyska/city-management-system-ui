@@ -11,11 +11,21 @@ export class CityListComponent implements OnInit {
 
   cities: City[] = [];
   displayedColumns: string[] = ['name', 'area', 'population', 'density'];
+  isLoading: boolean = false;
+
   constructor(private cityListService: CityListService) { }
 
   ngOnInit(): void {
-    this.cityListService.getCities().subscribe(res => {
-      this.cities = res;
+    this.cityListService.getCities().subscribe({
+      next: data => {
+        this.isLoading = true;
+        this.cities = data;
+      }, error: err => {
+        this.isLoading = false;
+        console.error(err);
+      }, complete: () => {
+        this.isLoading = false;
+      }
     });
   }
 

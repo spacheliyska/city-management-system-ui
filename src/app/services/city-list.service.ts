@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {map, Observable} from "rxjs";
+import {Observable} from "rxjs";
 import {City} from "../models/city";
 
 @Injectable({
@@ -9,6 +9,6 @@ import {City} from "../models/city";
 export class CityListService {
   constructor(private http: HttpClient) {}
   getCities(): Observable<City[]> {
-    return this.http.get<City[]>('http://localhost:8080/cities').pipe(map((result:any) => result));
+    return this.http.get<City[]>('http://localhost:8080/cities');
   }
 }
