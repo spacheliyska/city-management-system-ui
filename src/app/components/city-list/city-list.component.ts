@@ -3,6 +3,7 @@ import {CityListService} from "../../services/city-list.service";
 import {City} from "../../models/city";
 import {MatPaginator} from "@angular/material/paginator";
 import {MatTableDataSource} from "@angular/material/table";
+import {MatSort, Sort} from "@angular/material/sort";
 
 @Component({
   selector: 'city-list',
@@ -39,5 +40,21 @@ export class CityListComponent implements OnInit, AfterViewInit {
 
   isPopulationOverMillion(population: number): boolean {
     return population > 1_000_000;
+  }
+
+  sortData(sortData: Sort) {
+    if (sortData.active && sortData.direction) {
+      this.cityListService.sortCities(sortData.active, sortData.direction).subscribe({
+        next: sortedData => {
+          this.isLoading = true;
+          this.cities.data = sortedData;
+        }, error: err => {
+          this.isLoading = false;
+          console.warn(err);
+        }, complete: () => {
+          this.isLoading = false;
+        }
+      })
+    }
   }
 }
