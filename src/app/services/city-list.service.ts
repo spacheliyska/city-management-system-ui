@@ -3,6 +3,8 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {City} from "../models/city";
 
+const cityManagementCoreUrl: string = 'http://localhost:8080';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -11,6 +13,6 @@ export class CityListService {
   constructor(private http: HttpClient) {}
 
   getCities(): Observable<City[]> {
-    return this.http.get<City[]>('http://localhost:8080/cities');
+    return this.http.get<City[]>(`${cityManagementCoreUrl}/cities`);
   }
 }
