@@ -19,4 +19,8 @@ export class CityListService {
   sortCities(field: string, direction: string): Observable<City[]> {
     return this.http.get<City[]>(`${cityManagementCoreUrl}/cities?sortBy=${field}&orderDir=${direction}`);
   }
+
+  filterCitiesByName(cityName: string): Observable<City[]> {
+    return this.http.get<City[]>(`${cityManagementCoreUrl}/cities?filter=${cityName}`);
+  }
 }

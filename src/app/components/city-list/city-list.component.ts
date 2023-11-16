@@ -3,7 +3,7 @@ import {CityListService} from "../../services/city-list.service";
 import {City} from "../../models/city";
 import {MatPaginator} from "@angular/material/paginator";
 import {MatTableDataSource} from "@angular/material/table";
-import {MatSort, Sort} from "@angular/material/sort";
+import {Sort} from "@angular/material/sort";
 
 @Component({
   selector: 'city-list',
@@ -15,6 +15,7 @@ export class CityListComponent implements OnInit, AfterViewInit {
   cities: MatTableDataSource<City> = new MatTableDataSource<City>([]);
   displayedColumns: string[] = ['name', 'area', 'population', 'density'];
   isLoading: boolean = false;
+  filterValue: string = '';
 
   constructor(private cityListService: CityListService) { }
 
@@ -50,11 +51,25 @@ export class CityListComponent implements OnInit, AfterViewInit {
           this.cities.data = sortedData;
         }, error: err => {
           this.isLoading = false;
-          console.warn(err);
+          console.error(err);
         }, complete: () => {
           this.isLoading = false;
         }
-      })
+      });
     }
+  }
+
+  applyNameFilter(): void {
+    this.cityListService.filterCitiesByName(this.filterValue).subscribe({
+      next: filteredData => {
+        this.isLoading = true;
+        this.cities.data = filteredData;
+      }, error: err => {
+        this.isLoading = false;
+        console.error(err);
+      }, complete: () => {
+        this.isLoading = false;
+      }
+    });
   }
 }

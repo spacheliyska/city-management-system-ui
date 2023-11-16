@@ -1,5 +1,10 @@
 <div class="mat-elevation-z8">
-  <table *ngIf="cities.data.length" mat-table [dataSource]="cities" matSort (matSortChange)="sortData($event)">
+  <mat-form-field appearance="standard" class="filter-field">
+    <mat-label>Filter By Name</mat-label>
+    <input matInput placeholder="Search by name" #input [(ngModel)]="filterValue" (keyup)="applyNameFilter();">
+  </mat-form-field>
+
+  <table *ngIf="cities.data.length" mat-table [dataSource]="cities" matSort (matSortChange)="sortData($event);">
     <!-- Name Column -->
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
